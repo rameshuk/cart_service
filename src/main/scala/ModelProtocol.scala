@@ -1,6 +1,4 @@
-/**
-  * Created by ramesh on 05/03/2019.
-  */
+
 object ModelProtocol {
 
   sealed trait GroceryItem {
