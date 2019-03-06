@@ -1,0 +1,26 @@
+
+Order details
+Item Name	Category	UnitPrice	Qty	Discount	Final Price	
+Delivery charges :								0
+Total payable    :								0
+Order details
+Item Name	Category	UnitPrice	Qty	Discount	Final Price	
+Melon		Fruits		150.0		1		0		150.0
+Banana		Fruits		20.0		1		0		20.0
+Beans		Veggies		120.0		1		0		120.0
+Apple		Fruits		80.0		1		0		80.0
+Delivery charges :								0
+Total payable    :								370.0
+Order details
+Item Name	Category	UnitPrice	Qty	Discount	Final Price	
+Banana		Fruits		20.0		1		0		20.0
+Beans		Veggies		120.0		3		90.000		270.000
+Apple		Fruits		80.0		4		80.000		240.000
+Delivery charges :								0
+Total payable    :								530.000
+Order details
+Item Name	Category	UnitPrice	Qty	Discount	Final Price	
+Melon		Fruits		150.0		10		375.000		1125.000
+Apple		Fruits		80.0		20		400.000		1200.000
+Delivery charges :								50
+Total payable    :								2375.000
