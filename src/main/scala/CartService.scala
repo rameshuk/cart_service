@@ -5,8 +5,11 @@ import java.io.FileWriter
 
 class CartService  {
 
+  /*
+   create an order and returns total bill amount
+   */
   def checkoutBasket[item <: GroceryItem](items: List[item]): BigDecimal = {
-    printBill(createOrder(convertToBillItems(items)))
+    createOrder(items).total
   }
 
   private def getBillItem(item: GroceryItem, quantity: Int): BillItem = {
@@ -17,20 +20,17 @@ class CartService  {
     BillItem(item, quantity, discount, totalPrice)
   }
 
-  private def convertToBillItems[item <: GroceryItem](items: List[item]): List[BillItem] = {
-    items.groupBy(x => x).mapValues(x => x.length).map(x => getBillItem(x._1, x._2)).toList
-  }
-
-
-  private def createOrder(billItems: List[BillItem]): Order = {
+  private def createOrder[item <: GroceryItem](items: List[item]): Order = {
+    val billItems = items.groupBy(x => x).mapValues(x => x.length).map(x => getBillItem(x._1, x._2)).toList
     val totalBill = billItems.map(x => x.totalPrice).sum
     val deliveryCharges:BigDecimal = if (totalBill > 1000) 50 else 0
     val order: Order = Order(billItems, deliveryCharges, totalBill + deliveryCharges)
     OrderService.addOrder(order)
+    printBill(order)
     order
   }
 
-  private def printBill(order: Order): BigDecimal = {
+  private def printBill(order: Order): Unit = {
     val file = new File("billBook.txt")
     val writer  = new FileWriter(file, true)
     writer.write("\nOrder details")
@@ -40,7 +40,6 @@ class CartService  {
     writer.write("\nDelivery charges :"+ tabs(8) + order.deliveryCharges)
     writer.write("\nTotal payable    :"+ tabs(8) + order.total)
     writer.close()
-    order.total
   }
 
   private def tabs(n: Int): String ={
